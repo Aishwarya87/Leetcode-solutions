@@ -1,0 +1,36 @@
+#Approach-1: using nested for-loops and list comprehensions with O(n^2) complexity. 
+
+class Solution:
+    def letterCombinations(self, digits: str) -> List[str]:
+        mapping= {'2':"abc",'3':"def",'4':"ghi",'5':"jkl",
+                 '6':"mno",'7':"pqrs",'8':"tuv",'9':"wxyz"}
+        if not digits:
+            return []
+        numbers = list(mapping[digits[0]])
+        
+        for index in digits[1:]:
+            numbers=[old+new for old in numbers for new in list(mapping[index])]
+        return numbers
+
+# Approach-2: Backtracking- every possible combination - generating parantheses, trial and error
+# hashmap: to map every value to set of characters
+# BACKTRACKING TREE
+# Time complexity: O(n* 4^N), exponential complexity: since length of each string=n and 9:wxyz
+# DFS is searching all the possibilities using recursion
+
+class Solution:
+    def letterCombinations(self, digits: str) -> List[str]:
+        mapping= {'2':"abc",'3':"def",'4':"ghi",'5':"jkl",
+                 '6':"mno",'7':"pqrs",'8':"tuv",'9':"wxyz"}
+        res=[]
+        def backtrack(index_in_digits, temp_string):
+            if len(temp_string) == len(digits):
+                res.append(temp_string)
+                return
+            #have to build the string
+            for char in mapping[digits[index_in_digits]]: 
+                #for a,b,c  d,e,f in mapping[digits[0]]
+                backtrack(index_in_digits+1 , temp_string+char)
+        if digits:
+            backtrack(0,"")
+        return res
