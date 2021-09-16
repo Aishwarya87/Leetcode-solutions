@@ -1,0 +1,20 @@
+# it is a stack based problem since the closing parantheses have to be matched with the most recent parantheses(popping from the top).
+# Hash map for the correct opening and closing parantheses. so a hash map is for the reference.
+
+# TIME COMPLEXITY = O(N) ,  MEMORY COMPLEXITY = O(N) : for using stack of size n
+
+class Solution:
+    def isValid(self, s: str) -> bool:
+        closeToOpen={')':'(', '}':'{', ']':'['}
+        stack=[]
+        for char in s:
+            if char in closeToOpen:
+                if stack and stack[-1] == closeToOpen[char]:
+                    stack.pop()
+                else:
+                    return False
+            else:
+                stack.append(char)
+        return True if not stack else False
+        for i in stack:
+            x= stack.pop(0)
