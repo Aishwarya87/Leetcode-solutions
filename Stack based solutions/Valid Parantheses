@@ -16,5 +16,4 @@ class Solution:
             else:
                 stack.append(char)
         return True if not stack else False
-        for i in stack:
-            x= stack.pop(0)
+       
