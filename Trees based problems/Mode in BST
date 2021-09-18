@@ -1,0 +1,30 @@
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def findMode(self, root: Optional[TreeNode]) -> List[int]:
+        dict={}
+        curr=[]
+        result=[]
+        def inorder_traverse(node):
+            if node is None:
+                return
+            inorder_traverse(node.left)
+            curr.append(node.val) #2
+            inorder_traverse(node.right)
+        inorder_traverse(root)
+        for i in curr:
+            if i in dict:
+                dict[i]+=1
+            else:
+                dict[i]=1
+        maxi=max(dict.values())
+        for key,val in dict.items():
+            if val==maxi:
+                result.append(key)
+        return result
+            
+        
