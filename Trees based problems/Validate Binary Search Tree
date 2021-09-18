@@ -1,0 +1,20 @@
+The approach can be to check neighbours. But it wouldn't work here becuase there might be some element in neighbor's neighbor that actually denies the validation 
+but the approach is not capable of detecting it. Therefore we prefer DFS as the brute force approach.
+DFS checks every value for the left and the right subtrees and compares it with the root:O(N) and repeats this process for every subtree for every potential descendantO(N). 
+Overall Time Complexity: O(N^2)
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def isValidBST(self, root: Optional[TreeNode]) -> bool:
+        def isValid(node,left,right):
+            if node is None:
+                return True
+            if not(node.val>left and node.val<right):
+                return False
+            return(isValid(node.left,left,node.val) and isValid(node.right,node.val,right))
+        return (isValid(root,float('-inf'),float('inf')))
