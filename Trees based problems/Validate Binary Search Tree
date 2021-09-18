@@ -3,6 +3,7 @@ but the approach is not capable of detecting it. Therefore we prefer DFS as the 
 DFS checks every value for the left and the right subtrees and compares it with the root:O(N) and repeats this process for every subtree for every potential descendantO(N). 
 Overall Time Complexity: O(N^2)
 
+DFS APPROACH--------------------------------------------------------------------------------
 # Definition for a binary tree node.
 # class TreeNode:
 #     def __init__(self, val=0, left=None, right=None):
