@@ -12,7 +12,7 @@ class Solution:
             visit.add((r,c))
             q.append((r,c))
             while q:
-                row,col= q.popleft()
+                row,col= q.popleft()   #USING POP() HERE WILL BE THE DFS SOLUTION TO THIS PROBLEM
                 directions=[[0,1],[0,-1],[1,0],[-1,0]]
                 for dr,dc in directions:
                     curr_row,curr_col=row+dr,col+dc
