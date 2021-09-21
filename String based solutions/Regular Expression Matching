@@ -1,0 +1,17 @@
+.  = for any character but has to be a character 
+* = for 0(nothing) or more occurences of the preceding character
+s * = nothing, s, ss, sss, ........
+. *= nothing, . ., . . ., . . ., . . . . (the character can be mixed as well like s s i)
+Will make a DP grid for this problem between pattern and string
+if last character of string== last character of the pattern, diagnolly above
+if last character of string!= last character of the pattern, put FALSE
+if pattern has dot, then diagnolly above
+
+INN THE TABLE
+for column_number=0; for character and . in pattern, put false, bc they need atleast one character to satisfy(plus diagnolly above) but dont have any.
+for column_number=0; if encounter *, 2 rows above.
+is s==p, then check diagnolly, else: false
+if diagnolly its false, then false. 
+m i s * == m i ,  m i s, m i s s,  ........., m i s s *
+in a nutshell, m i s *== EITHER mi or miss*,     2 rows above, left(if the last character before * in pattern is equal to the last character in string) 
+.  == matches with every character, have to check diagnolly
