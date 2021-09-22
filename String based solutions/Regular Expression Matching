@@ -15,3 +15,38 @@ if diagnolly its false, then false.
 m i s * == m i ,  m i s, m i s s,  ........., m i s s *
 in a nutshell, m i s *== EITHER mi or miss*,     2 rows above, left(if the last character before * in pattern is equal to the last character in string) 
 .  == matches with every character, have to check diagnolly
+
+
+class Solution:
+    def isMatch(self, s: str, p: str) -> bool:
+        rows= len(p)+1
+        cols = len(s)+1
+        
+        dp= [[None for i in range(cols)] for j in range(rows)]
+        for i in range(len(dp)):
+            for j in range(len(dp[0])):
+                if i==0 and j==0:
+                    dp[i][j]=True
+                elif i==0:
+                    dp[i][j]=False
+                elif j==0:
+                    pc=p[i-1]
+                    if pc=='*':
+                        dp[i][j]=dp[i-2][j]
+                    else:
+                        dp[i][j]=False
+                else:
+                    pc=p[i-1]
+                    sc=s[j-1]
+                    if pc=='*':
+                        dp[i][j]=dp[i-2][j]
+                        pslc=p[i-2]
+                        if pslc=='.' or pslc==sc:
+                            dp[i][j]=dp[i][j] or dp[i][j-1]
+                    elif pc=='.':
+                        dp[i][j]=dp[i-1][j-1]
+                    elif pc==sc:
+                        dp[i][j]=dp[i-1][j-1]
+                    else:
+                        dp[i][j]=False
+        return dp[len(p)][len(s)]
