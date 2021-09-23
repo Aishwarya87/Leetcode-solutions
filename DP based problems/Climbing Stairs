@@ -1,0 +1,17 @@
+Already for 4 stairs, we have the ways greater than 4, i.e. 5. This is something thats going to grow faster than the input size.
+Which means, for more number of staircases, there will be more possilities and the approach to find the total number of ways, Brute-
+Force solution will be too slow. So the deeper insight to recognize the structure of the problem is required.
+
+To get to the 4th staircase, we only have two ways, to get it from 3 using 1 step or 2 using 2 steps. So the ways will be the 
+combination for 3 and 2(Fibonacci sequence progression)(MEMOIZATION).
+
+Time Complexity: O(n)
+
+Using recursion(Depth First Search)(Tree): Time complexity: O(2^n): 2 decisions each time^ HEIGHT of the tree
+
+class Solution:
+    def climbStairs(self, n: int) -> int:
+        path={1:1,2:2,3:3}
+        for x in range(4,n+1):
+            path[x]=path[x-1]+path[x-2]
+        return path[n]
