@@ -1,0 +1,30 @@
+Step 1 - Identify a recurrence relation between subproblems.
+Step 2 - Covert the recurrence relation to recursion
+Step 3 - Optimization 1 - Top Down DP - Add memoization to recursion - From exponential to linear.
+Step 4 - Optimization 2 -Bottom Up DP - Convert recursion to iteration - Getting rid of recursive stack
+Step 5 - Optimization 3 - Fine Tuning - Reduce O(n) space to O(1).
+
+class Solution:
+    def minCostClimbingStairs(self, cost: List[int]) -> int:
+        n=len(cost)
+        dp=[]
+        for i in range(n):
+            if i<2:
+                dp.append(cost[i])
+            else:
+                dp.append(cost[i]+min(dp[i-1],dp[i-2])) #Bottom up tabulation
+                
+        return min(dp[n-1],dp[n-2])
+        
+class Solution:
+    def minCostClimbingStairs(self, cost: List[int]) -> int:
+        n=len(cost) #3
+        first=cost[0]
+        second=cost[1]
+        if n==2:
+            return min(first,second)
+        for i in range(2,n): #(2,3)
+            curr=cost[i]+min(first,second)   #Bottom up computation
+            first=second 
+            second=curr
+        return min(first,second)
