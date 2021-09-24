@@ -1,0 +1,23 @@
+Sieve of Eratosthenes.
+We dont have to check the multiples for those numbers which have already been eliminated. In short,
+we have to eliminate the multiples of the known prime numbers.
+
+The Sieve of Eratosthenes uses an extra O(n) memory and its runtime complexity is O(n log log n). 
+
+class Solution:
+    def countPrimes(self, n: int) -> int:
+        if n==0: return 0
+        if n==1: return 0
+        primes=[True]*n  #n=10
+        count=0 #all the true's in the list
+        p=2
+        while p*p<n:
+            if primes[p]:
+                for i in range(p*2,n,p):
+                    primes[i]=False
+            p+=1
+        primes[0],primes[1]=False, False
+        for p in range(n):
+            if primes[p]==True:
+                count+=1
+        return count
