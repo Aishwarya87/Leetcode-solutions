@@ -1,0 +1,8 @@
+Brute Force:
+nums=[0]
+somewhere where you cant have a valid triplet, return []
+
+
+Trying every single possible combination
+
+
