@@ -1,8 +1,24 @@
 Brute Force:
+
 nums=[0]
 somewhere where you cant have a valid triplet, return []
-
-
 Trying every single possible combination
 
+ Sets can not contain mutable objects. Therefore, we comvert them to tuple first.
+ Time Complexity: n^3
+ class Solution:
+    def threeSum(self, nums: List[int]) -> List[List[int]]:
+        if (len(nums)<3):
+            return []
+        triplets=[]
+        for i in range(0,len(nums)-2):
+            for j in range(i+1,len(nums)-1):
+                for k in range(j+1,len(nums)):
+                    if nums[i]+nums[j]+nums[k]==0:
+                        triplets.append(tuple(sorted([nums[i],nums[j],nums[k]])))
+        return (list(set(triplets)))
+        
+ Time Complexity: n^2 with sorting
 
+ 
+ 
