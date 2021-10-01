@@ -1,0 +1,23 @@
+Using Two Pointers, sliding window.
+Memory: O(1)
+Time: O(N)
+
+class Solution:
+    def maxProfit(self, prices: List[int]) -> int:
+        for i in range(len(prices)):
+            l,r=0,1
+            # l =buy, r=sell
+            # l has to be the minimum, r has to be the maxiumum
+            maxP=0
+            while r<len(prices):
+                #profitable?
+                if prices[l]<prices[r]:
+                    profit=prices[r]-prices[l]
+                    maxP=max(maxP,profit)
+                else: #found a minimum point uptil now
+                    l=r #WHY? left pointer should be at the minimum to increase profit. 
+                r+=1
+            if maxP<0: return 0
+            else: return maxP
+            
+            
